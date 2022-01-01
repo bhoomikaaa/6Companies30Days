@@ -40,4 +40,29 @@ vector<vector<string> > Anagrams(vector<string>& string_list) {
 }
 T(c)-O(1)
 S(C)- O(1)
-    
+
+
+// Question 3 Run length encoding
+string encode(string src)
+{     
+  //Your code here 
+   string ans = "";
+  char prev = src[0];
+  int count = 1;
+  for(int i=1;i<src.length();i++){
+      if(src[i] == prev){
+          count++;
+      }
+      else{
+          ans.push_back(prev);
+          ans.append(to_string(count));
+          count = 1;
+          prev = src[i];
+      }
+  }
+  ans.push_back(prev);
+  ans.append(to_string(count));
+  return ans;
+}  
+T(C)-O(N)
+S(C)-O(1)
