@@ -23,7 +23,7 @@ vector<vector<string> > Anagrams(vector<string>& string_list) {
     */
     
     
-    Question 2 Overlapping Rectangles
+   // Question 2 Overlapping Rectangles
     
     int doOverlap(int L1[], int R1[], int L2[], int R2[]) {
      // to check if the rectangles are actually a line
@@ -38,11 +38,32 @@ vector<vector<string> > Anagrams(vector<string>& string_list) {
      return false;
      return true;
 }
-T(c)-O(1)
-S(C)- O(1)
+//T(c)-O(1)
+//S(C)- O(1)
 
 
-// Question 3 Run length encoding
+//Question 3 count subarrays having product less than k 
+     int countSubArrayProductLessThanK(const vector<int>& a, int n, long long k) {
+     long long int start=0,end=0,count=0,prod=1;
+       while(end<n){
+           prod*=a[end];
+           while(start<n and prod>=k){
+               prod=prod/a[start]; // drop that element
+               start++; // slide the window
+           }
+           if(prod<k)
+           count+=end-start+1;
+          // +1 because we are also considering individual elements as subarrays
+           end++; // increment the size of the window
+       }
+       return count;
+    }
+   // T(C)-O(N) since we are traversing the whole array once
+   // S(C)-O(1)
+
+
+
+// Question 4 Run length encoding
 string encode(string src)
 {     
   //Your code here 
@@ -66,3 +87,4 @@ string encode(string src)
 }  
 T(C)-O(N)
 S(C)-O(1)
+ 
