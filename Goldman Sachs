@@ -24,7 +24,7 @@ vector<vector<string> > Anagrams(vector<string>& string_list) {
     
     
     Question 2 Overlapping Rectangles
-    ublic:
+    
     int doOverlap(int L1[], int R1[], int L2[], int R2[]) {
      // to check if the rectangles are actually a line
      if(L1[0]==L2[0] || R1[0] ==R2[0]|| L1[1]==L2[1] || R1[1]==R2[1])
@@ -38,4 +38,6 @@ vector<vector<string> > Anagrams(vector<string>& string_list) {
      return false;
      return true;
 }
+T(c)-O(1)
+S(C)- O(1)
     
