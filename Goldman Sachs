@@ -1,1 +1,24 @@
 solutions to problems of goldman sachs
+
+//Question 1. print all anagrams together
+//solution
+vector<vector<string> > Anagrams(vector<string>& string_list) {
+        vector<vector<string>> ans;
+        unordered_map<string,vector<string> >umap;
+        for( int i=0;i<string_list.size(); i++){
+            
+        
+        string s =string_list[i];
+        sort(s.begin(),s.end());
+        umap[s].push_back(string_list[i]);
+        
+    }
+    for(auto itr=umap.begin(); itr!=umap.end();itr++)
+    ans.push_back(itr->second);
+    return ans;
+    }
+    /* 
+    T(c)- O(N*|S|*log|S|) where N is the total number of strings and |S| denotes the size of string so |S|log|S| time would be taken for sorting them.
+    S(c)-O(N*|S|) sinc we are storing n strings of size |S| in hashmap.
+    */
+    
