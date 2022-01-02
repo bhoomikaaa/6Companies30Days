@@ -88,6 +88,28 @@ string encode(string src)
 //T(C)-O(N)
 //S(C)-O(1)
 
+// Question 5 Program to find Nth ugly number.
+
+	ull getNthUglyNo(int n) {
+	    vector<ull> vec(1,1); // we have added 1 as an ugly number
+	    for(int x=0,y=0,z=0; vec.size()!=n;){ // performing the operation since size of vector becomes n
+	        ull val= min(min(vec[x]*2,vec[y]*3),vec[z]*5); // multiply 2 3 and 5  with the least value in the vector and select min among those multiples
+	        vec.push_back(val); 
+	        if(vec.back()==vec[x]*2)
+	        x++;
+	         if(vec.back()==vec[y]*3)
+	        y++;
+	         if(vec.back()==vec[z]*5)
+	        z++;
+	        
+	    }
+	    return vec.back(); // return the last value i.e nth value of vector
+	 
+	}
+        T(C)-O(N)
+        S(C)-O(N)
+        
+
 // Question 7 Distributing M items in a circle of size N starting from K-th position
 int Solution::solve(int M, int N, int K) {
     int n= (M+K-1)%N;
