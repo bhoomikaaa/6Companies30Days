@@ -198,4 +198,24 @@ int calcSquaresCount(int n){
    return squareCount;
 }
 
+// Question 14 Minimum size subarray sum
+(using two pointer approach)
+     int minlen=nums.size()+1;
+        int sum=0;
+        int left=0;
+        for(int right=0;right<nums.size();right++){
+            sum=sum+nums[right];
+            while(sum>=target && left<=right){
+                minlen=min(minlen,right-left+1);
+                sum-=nums[left++];
+            }
+        }
+        if (minlen==nums.size()+1 )
+            return 0;
+        else
+            return minlen;
+    }
+    // T(C)-O(N)
+    // S(C)-O(N)
+
  
