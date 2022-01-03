@@ -191,4 +191,11 @@ int Solution::solve(int M, int N, int K) {
     S(C)-O(1)
 
 
+// Question 12 Find number of squares in an N*N chessborad
+
+int calcSquaresCount(int n){
+   int squareCount = ( (n * (n+1) * (2*n + 1))/6 ); // since this is the formula for sq(1)+sq(2)+sq(3)+.........+sq(n)
+   return squareCount;
+}
+
  
