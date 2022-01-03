@@ -156,6 +156,39 @@ int Solution::solve(int M, int N, int K) {
                 }
         return ans;
     }
+    
+    
+    // Question 11 Find missing and repeating 
+    pair<int,int> findboth(int *arr, int n){ // helper function find two numbers
+    int repeating=0;
+    int missing=0;
+    for(int i=0;i<n;i++){
+        int index=abs(arr[i]-1);
+        if(arr[index]>0){         // if the element is positive make it negative
+        arr[index]=-1*arr[index];
+        }
+        else{
+            repeating=abs(arr[i]); // if it is already negative that means we are encountering it the second time so its repeating
+        }
+    }
+    for(int i=0;i<n;i++){
+        if(arr[i]>0){  // if after the whole process an element is still positive that means we didnt reach to its index which means its missing
+            missing=i+1;
+            
+        }
+    }
+    return { repeating,missing};
+}
+    int *findTwoElement(int *arr, int n) {
+        int* res= new int[2]; // dynamic array
+        pair<int,int> ans= findboth(arr,n);
+        res[0] =ans.first;
+        res[1]=ans.second;
+        return res;
+        
+    }
+    T(C)-O(N)
+    S(C)-O(1)
 
 
  
