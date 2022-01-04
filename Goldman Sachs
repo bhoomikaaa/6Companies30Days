@@ -106,9 +106,29 @@ string encode(string src)
 	    return vec.back(); // return the last value i.e nth value of vector
 	 
 	}
-        T(C)-O(N)
-        S(C)-O(N)
-        
+      //  T(C)-O(N)
+       // S(C)-O(N)
+       
+       
+       // Question 6 Greatest Common Divisor of Strings
+       (using recursion)
+        string gcdOfStrings(string str1, string str2) {
+        if (str1 + str2 != str2 + str1){   // to have common divsior , their concatenation should equal from both ways
+             return "";
+                }
+             if(str1 == str2){
+            return str1;
+               }
+             if(str1.length() > str2.length()){
+             return gcdOfStrings(str1.substr(str2.length()), str2);
+     }
+     if(str2.length() > str1.length()){
+        return gcdOfStrings(str2.substr(str1.length()), str1);
+        }
+     return 0; 
+            }
+	    // T(C)-O(t+S) length of both strings
+	    //S(C)-O(1)
 
 // Question 7 Distributing M items in a circle of size N starting from K-th position
 int Solution::solve(int M, int N, int K) {
