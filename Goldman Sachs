@@ -128,7 +128,7 @@ string encode(string src)
      return 0; 
             }
 	    // T(C)-O(t+S) length of both strings
-	    //S(C)-O(1)
+	    //S(C)-O(t+s)
 
 // Question 7 Distributing M items in a circle of size N starting from K-th position
 int Solution::solve(int M, int N, int K) {
