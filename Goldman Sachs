@@ -218,4 +218,27 @@ int calcSquaresCount(int n){
     // T(C)-O(N)
     // S(C)-O(N)
 
+
+// Question 15 Array pair sum divisibility problem
+ bool canPair(vector<int> nums, int k) {
+        // Code here.
+        unordered_map<int,int> m; // declaring a map  that stores remainders and their frequencies
+        for(int i=0;i<nums.size();i++){
+          int rem =nums[i]%k;
+             if(rem<0) // case when the remainder is negative add k to it
+              rem+=k;
+              m[rem]++; stores all the remainders
+        }
+        if(m[0]%2!=0)  // 0 should be present even times
+        return false;
+        for(int i=1;i<k;i++){ // traversing the map
+        if(m[i]!=m[k-i])  // frequency of remainder of nums[i] should be equal to k-frequency of remainder of nums[i] so that they can make a pair for eg if k=3 the frequency of 1
+	//should be equal to frequency of 2
+        return false; }
+        
+    
+    return true;
+    }
+    T(C)-O(N)
+    S(C)-O(N)
  
