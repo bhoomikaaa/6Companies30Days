@@ -208,6 +208,61 @@ int Solution::solve(int M, int N, int K) {
         return ans;
     }
     
+    // Find max 10 numbers in a list having 10 M entries
+    #include<bits/stdc++.h>
+using namespace std;
+vector<int> LargestTen( vector<int> &arr){
+
+ priority_queue<int, vector<int> , greater<int>> q; // Creating a priority queue with greater than comparator
+ for(int i=0;i<arr.size();i++){
+ if(q.size()==10){ // when the size becomes 10
+ if(arr[i]>q.top()){
+ q.pop();             // pop out the root if we are inserting a greater element
+ q.push(arr[i]); // and push that element
+ }
+
+ }
+ else{
+ q.push(arr[i]);
+ }
+ }
+ vector<int> res;
+ for(int i=0;i<10;i++){
+ int temp=q.top();   // top will have the largest element
+ res.push_back(temp);
+ q.pop();  // pop the top and next largest would become the top
+ }
+ return res;
+
+
+ }
+
+
+
+
+int main(){
+ long long int n;
+ cin>>n;
+ vector<int> arr;
+ for(int i=0;i<n;i++){
+ int temp;
+ cin>>temp;
+ arr.push_back(temp);
+
+
+
+ }
+ vector<int> result;
+ result = LargestTen(arr);
+ cout<<endl<<"largest 10"<<endl;
+ for(int i=9;i>=0;i--){
+ cout<<result[i]<<endl;
+ }
+
+}
+//T(C)-O(NlogK)
+// S(C)-O(K)
+    
     
     // Question 11 Find missing and repeating 
     pair<int,int> findboth(int *arr, int n){ // helper function find two numbers
