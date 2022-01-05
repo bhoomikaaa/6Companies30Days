@@ -3,14 +3,15 @@ solutions to problems of goldman sachs
 //Question 1. print all anagrams together
 //solution
 vector<vector<string> > Anagrams(vector<string>& string_list) {
-        vector<vector<string>> ans;
-        unordered_map<string,vector<string> >umap;
+        vector<vector<string>> ans; // Creating a vector of vector of strings as a result
+        unordered_map<string,vector<string> >umap; // taking sorted string as a key and all the original anagrams of it as values
         for( int i=0;i<string_list.size(); i++){
             
         
-        string s =string_list[i];
-        sort(s.begin(),s.end());
-        umap[s].push_back(string_list[i]);
+        string s =string_list[i]; 
+        sort(s.begin(),s.end());  // sort string s
+        umap[s].push_back(string_list[i]); // we have passed the sorted string as values and comparing it with sorted value of anagrams and if they are equal then the original
+	//anagram would become the value for that key
         
     }
     for(auto itr=umap.begin(); itr!=umap.end();itr++)
