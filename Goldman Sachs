@@ -249,6 +249,40 @@ int calcSquaresCount(int n){
    return squareCount;
 }
 
+// Question 13 Decode String
+// Using Recursion
+class Solution{
+    string decodedString( string& s, int& i){
+        string result;
+        while(i<s.length() && s[i]!=']'){ // Continue the process until we encounter ]
+            if(isdigit(s[i])){ // if the current element is a digit
+        int k=0;
+      while(i<s.length() && isdigit(s[i])) // Until the element is a digit
+                k=k*10+s[i++]-'0'; // eg-345= 0*10+3= 3, 3*10+4=34. 34*10+5=345
+                i++; // skipping [ bracket 
+                string r= decodedString(s,i); // recursive call to function 
+                while(k-- > 0) 
+                result+=r;  // add r to result string k number of times
+                i++; // skipping closing bracket
+            }else
+            result+=s[i++]; // if current element is non digit
+        }
+        return result;
+    }
+    T//(C)-O(S) becuase we are traversing a string once
+    //S(C)-O(S) because of recursive stack
+    
+    
+    
+public:
+    string decodedString(string s){
+        // code here
+        int i=0;
+        return decodedString(s,i);
+    }
+};
+
+
 // Question 14 Minimum size subarray sum
 (using two pointer approach)
      int minlen=nums.size()+1;
