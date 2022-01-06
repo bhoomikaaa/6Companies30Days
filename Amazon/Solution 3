@@ -1,6 +1,7 @@
 question - IPL 2021 Match day 2
+Sliding window maximum
 
-
+//Using heap
 vector<int> max_of_subarrays(vector<int> arr, int n, int k) {
        // pair<int,int> contains(arr[i],index)
     priority_queue<pair<int,int>> heap; // max heap to find maximum in a sliing window
@@ -18,5 +19,28 @@ while(!heap.empty() && heap.top().second<=(i-k)) // pop the root if it is out of
     }
     
     
-    T(C)-O(NlogK)
+    T(C)-O(NlogK) because they are n elements and pushing and popping in a heap takes logarithmic time and heap is of k elements.
+    S(C)-O(K)
+    
+    // Using deque
+    
+     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<int> dq;
+        vector<int> res;
+        for(int i=0;i<nums.size();i++){
+            while(dq.size()>0 && dq.front()<=i-k){ // if the front element goes out of range //of sliding window
+                dq.pop_front();
+            }
+            while(dq.size()>0 && nums[dq.back()]<nums[i]){ // keep popping the smaller elements in the deque if we encounter a greater element in array
+dq.pop_back();
+            }
+                                      dq.push_back(i); //  and push it in dq
+                                      if(i>=k-1) // if we have k number of elements or greater //in our window  we can add the highest element or front to result
+                                      res.push_back(nums[dq.front()]);
+        }
+                                      return res;
+                                      
+    }
+    
+    T(C)-O(N)
     S(C)-O(K)
