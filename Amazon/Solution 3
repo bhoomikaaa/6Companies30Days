@@ -1,0 +1,22 @@
+question - IPL 2021 Match day 2
+
+
+vector<int> max_of_subarrays(vector<int> arr, int n, int k) {
+       // pair<int,int> contains(arr[i],index)
+    priority_queue<pair<int,int>> heap; // max heap to find maximum in a sliing window
+    vector<int> ans; // stores all maximum values for all sliding windows
+    for(int i=0;i<n;i++){
+while(!heap.empty() && heap.top().second<=(i-k)) // pop the root if it is out of the window
+   heap.pop();
+   heap.push(make_pair(arr[i],i));
+   if(i>=k-1)// when we have sufficient elements for a valid sliding window
+   ans.push_back(heap.top().first);
+   
+    }
+    
+    return ans;
+    }
+    
+    
+    T(C)-O(NlogK)
+    S(C)-O(K)
