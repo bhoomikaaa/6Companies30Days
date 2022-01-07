@@ -1,0 +1,27 @@
+ Question - First non repeating character in a stream 
+ Using queue
+ 
+ 
+ string FirstNonRepeating(string A){
+		    queue<int> q;
+		    string temp="";
+		    int freq[26]={0};
+		    for(int i=0;i<A.size();i++){
+		        freq[A[i]-'a']++;  // Increment the frequency of current element
+		        if( freq[A[i]-'a']==1){ // only push it if it is less or equal to 1 because otherwise it cant be non repeating so no use of pushing it.
+		        q.push(A[i]);
+		    }
+		    while(!q.empty() && freq[q.front()-'a']!=1){ // pop the front element until we get a element with frequency 1 at front
+		        q.pop();
+		    }
+		    if(q.empty()){ // if we do not get any element with frequency 1  that means there is no non repeating first character hence add #
+		        A[i]='#';
+		    }else{
+		        A[i]=q.front(); // or else add the element at front
+		    }
+		}
+		return A;
+		}
+    
+    T(C)-O(26*N)
+    S(C)-O(26)
