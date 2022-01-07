@@ -1,0 +1,26 @@
+Question Delete M nodes after N nodes in a linked list
+
+ void linkdelete(struct Node  *head, int M, int N)
+    {
+        if(!head)
+        return;
+        Node* temp=head;
+        while(temp){
+            int count1=1;
+            while(temp && count1<M){
+                temp=temp->next;
+                count1++;
+            }
+            if(!temp){
+                break;
+            }
+            Node* prev=temp;
+            temp=temp->next;
+            int count2=0;
+            while(temp && count2<N){
+                temp=temp->next;
+                count2++;
+            }
+            prev->next=temp;
+        }
+    }
