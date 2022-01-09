@@ -1,0 +1,21 @@
+Question Maximum of all subarrays of size k
+using queue
+  vector <int> max_of_subarrays(int *arr, int n, int k)
+    {
+        vector<int>res;
+        deque<int> dq;
+        for(int i=0;i<n;i++){
+            if(dq.size()>0 && dq.front()<=i-k) 
+            dq.pop_front(); // pop the front element if it is out of range of slidng window
+            while(dq.size()>0 && arr[i]>arr[dq.back()])
+            dq.pop_back(); // pop allt he smaller elements present in queue than current element
+           // because they cant be max
+            dq.push_back(i); //and then push curr element
+            if(i>=k-1) res.push_back(arr[dq.front()]); // if we reach k or more than k elements in the queue
+            then add front
+        }
+        return res;
+    }
+    
+    T(C)-O(N)
+    S(C)-O(K)
