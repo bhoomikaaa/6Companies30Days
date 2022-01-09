@@ -1,0 +1,58 @@
+Question Tree Burning
+
+int minTime(Node* root, int target) 
+    {
+        // Your code goes here
+         map<Node*, Node*> m;// map to link parent node with child node
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()) {
+        Node *curr = q.front();
+        q.pop();
+        if(curr->left) {
+            m[curr->left] = curr; // parent of its left node will be itself
+            q.push(curr->left); // push it into queue
+        }
+        if(curr->right) {
+            m[curr->right] = curr; // parents of its  right node will be itself
+            q.push(curr->right);
+        }
+    }
+    Node *tar = NULL;
+    q.push(root);
+    while(!q.empty()) {
+        tar = q.front();
+        q.pop();
+        if(tar->data == target) { // if curr node is equal to target node
+            break;
+        }
+        if(tar->left) q.push(tar->left);
+        if(tar->right) q.push(tar->right);
+    }
+        
+    queue<pair<Node*, int>> time; // queue to store node and time taken  to burn it
+    int ans = 0;
+    map<Node*, int> vis; // visisted array to store visited nodes
+    time.push({tar, 0}); // push curr node into q
+    vis[tar] = 1; // mark the current node as visited
+        
+    while(!time.empty()) {
+        ans = time.front().second;
+        Node *curr = time.front().first;
+        time.pop();
+        // time would be same for left right and parent node
+        if(m.find(curr)!=m.end() && vis.find(m[curr])==vis.end()) {
+            time.push({m[curr], ans+1});
+            vis[m[curr]] = 1;
+        }
+        if(curr->left && vis.find(curr->left)==vis.end()) {
+            time.push({curr->left, ans+1});
+            vis[curr->left] = 1;
+        }
+        if(curr->right && vis.find(curr->right)==vis.end()) {
+            time.push({curr->right, ans+1});
+            vis[curr->right] = 1;
+        }
+    }
+    return ans;
+    }
