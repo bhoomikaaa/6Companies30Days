@@ -1,0 +1,25 @@
+Question Phone Directory
+
+ vector<vector<string>> displayContacts(int n, string contact[], string s)
+    {
+        set<string> mp; //Create a set to store all string
+        vector<vector<string>> ans(s.size()); // the vector of vector of string ans will have 
+        //size equal to query string because we have to check for all prefixes
+       
+        for(int i=0;i<n;i++){
+            mp.insert(contact[i]); // insert all strings of contact in map
+        }
+        for(int i=0;i<s.size();i++){ 
+            for(auto it:mp){
+                if(s.substr(0,i+1)==it.substr(0,i+1)){ // search for a prefix of query  string 
+                //in every string in map.
+                    ans[i].push_back(it); 
+                    // if any string has same prefix push it into ans
+                }
+            }
+            if(ans[i].size()==0){ // if there were no common prefixes then add 0 to ans
+                ans[i].push_back(to_string(0));
+            }
+        }
+        return ans;
+    }
