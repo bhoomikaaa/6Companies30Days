@@ -1,0 +1,30 @@
+Question Longest mountain in an array 
+
+
+  int longestMountain(vector<int>& arr) {
+        
+        int largest = 0;
+        int n = arr.size();
+        
+        for(int i = 1; i <= n-2;) { // Since first and last elements cannot be peak point
+            if(arr[i] > arr[i-1] && arr[i] > arr[i+1]) {
+                int j = i; // To make sure that increasing and decreasing sequence are continous
+                int count = 1; 
+                while(j >=1 && arr[j] > arr[j-1]) {
+                    j--;  //decrementing j till the time it is smaller than peak point
+                    count++; // incr count of mountain
+                }
+                while(i <= n-2 && arr[i] > arr[i+1]) {
+                    i++; // incr i till the time it is smaller than peak point
+                    count++;
+                }
+                largest = max(largest, count);
+            } else {
+                i++; // if we havent found peak point incr i
+            }
+        }
+        return largest;
+    }
+        
+        T(C)-O(N)
+        S(C)-O(1)
