@@ -1,0 +1,20 @@
+Minimum steps to reach destination
+
+
+ int reachNumber(int target) {
+        
+        // the basic idea used is that changing sign of some elements of configuration when destination is even gives us the result
+          int sum  = 0;
+        int steps = 0;
+        target = abs(target); // the polarity of target doesnt make any difference because it //would take equal steps to go on positive or negative side
+        while(sum<target){  // come out of the loop if sum becomes equal to target
+            sum+=steps;
+            steps++;
+        }
+        while((sum-target)%2){ // keep adding steps till the diff is odd to make it even
+            sum+=steps;
+            steps++;
+        }
+        return steps-1;
+    }
+    
