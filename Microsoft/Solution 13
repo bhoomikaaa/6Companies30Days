@@ -1,0 +1,22 @@
+Bridge edge in a graph
+
+ int isBridge(int V, vector<int> adj[], int c, int d) 
+    { // bfs
+        adj[c].erase(find(adj[c].begin(), adj[c].end(),d)); // erasing the edge of c and d
+        adj[d].erase(find(adj[d].begin(),adj[d].end(),c));
+        queue<int> q;
+        vector<bool> vis(V,false); // creating a visited vector
+        q.push(c);
+        vis[c]=true;
+        while(!q.empty()){
+            int u=q.front();
+            q.pop();
+            for(auto& V: adj[u]){
+                if(!vis[V]){
+                    vis[V]=true;
+                    q.push(V);
+                }
+            }
+        }
+        return !vis[d]; // if we dont visit vertex d after removing the edge that means the edge was a bridge edge
+    }
