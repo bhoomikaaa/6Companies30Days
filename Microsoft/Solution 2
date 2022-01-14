@@ -1,0 +1,41 @@
+Prerequisite tasks
+
+
+bool iscycle(int src, vector<bool>&visited, vector<bool>&recstack,vector<int>adj[]){
+   // function to check the presence of a cycle in a directed graph using dfs 
+    if(visited[src]== false){
+        visited[src]=true;
+        recstack[src]=true;
+        for(auto it: adj[src]){ // traversing the adjacent elements of current vertex
+            if(!visited[it] and iscycle(it,visited,recstack,adj)){ //if it is not visited then make it visited and check for cycle recursively
+                return true; // return true if cycle present
+            }
+            else{
+                if(recstack[it]){ // if the element is present in visited as well as order vector that means we are reaching that element from the same path again so its a cycle
+                    return true;
+                }
+            }
+        }
+    }
+    recstack[src]=false; // make the order vector false during the next recursive call
+    return false;
+
+}
+
+	bool isPossible(int N, vector<pair<int, int> >& prerequisites) {
+	    vector<int>adj[N]; // Create a graph
+	    for(int i=0;i<prerequisites.size();i++){
+	        int u=prerequisites[i].first,v= prerequisites[i].second;
+	        adj[u].push_back(v);
+	    }
+	    vector<bool>visited(N,false); // visited vector
+	    vector<bool>recstack(N,false); // vector to store the order
+	    for(int i=0;i<N;i++){
+	        if(visited[i]==false){   // if not visited then make it visited
+	            if(iscycle(i,visited,recstack,adj)){ // if cycle is present then all tasks are not possible
+	                return false;
+	            }
+	        }
+	    }
+	    return true; // otherwise possible
+	}
