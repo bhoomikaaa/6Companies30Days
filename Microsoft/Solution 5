@@ -1,0 +1,22 @@
+Stock span problem
+
+vector <int> calculateSpan(int price[], int n)
+    {
+       stack<pair<int,int>> s; // stack to store price at ith day and its current span
+       s.push({price[0],1}); // span of element at 0th day would be 1
+       vector<int>ans;
+       ans.push_back(1);
+       for(int i=1;i<n;i++){
+           
+           int x=1; // initializing x to 1 because we also add the span of current element
+           while(!s.empty() && s.top().first<=price[i]){
+               // keep popping while the top is smaller the current price
+               auto z=s.top();
+               s.pop();
+               x+=z.second; // add span of nearest smallest element to the left to x
+           }
+           s.push({price[i],x}); // now push the curr element
+           ans.push_back(x); // push the span of it
+       }
+       return ans;
+    }
