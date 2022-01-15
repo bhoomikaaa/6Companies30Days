@@ -1,0 +1,23 @@
+Connect nodes at same level
+
+ void connect(Node *root)
+    {
+       queue<Node*>q;
+       q.push(root);
+       while(!q.empty()){
+       int x= q.size();
+       while(x--){
+           Node* t=q.front();
+           q.pop();
+           if(x==0)
+           t->nextRight=NULL;
+           else
+           t->nextRight=q.front();
+           
+           if(t->left)
+           q.push(t->left);
+           if(t->right)
+           q.push(t->right);
+       }
+    }  
+    }
