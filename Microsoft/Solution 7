@@ -1,0 +1,37 @@
+Unit area of largest region of 1's
+
+int findMaxArea(vector<vector<int>>& grid) {
+        int ans=0;
+        for(int i=0;i<grid.size();i++){ // rows
+            for(int j=0;j<grid[0].size();j++){ // col
+                int cnt=0; // initializing count to 0
+                if(grid[i][j]==1){ // if the grid value is 1
+                    dfs(grid,i,j,cnt); // perform dfs for all its neighbours
+                    ans=max(ans,cnt);
+                }
+            }
+        }
+        return ans;
+    }
+    void dfs(vector<vector<int>>& grid,int i, int j, int &cnt)
+    {
+        if(i>=grid.size() || i<0 || j>=grid[0].size() || j<0 || grid[i][j]==0)
+        // if i or j goes out of boundary or value of grid element is 0 
+        // useless neighbour
+        return ; // then return 
+        cnt++;
+        grid[i][j]=0; 
+        // making the current grid block 0 so it is not considered a neigbour of its neighbour
+        // basically to avoid an unending cycle
+        // making it 0 once we have encountered it
+        dfs(grid,i-1,j,cnt); // above
+         dfs(grid,i+1,j,cnt); // below
+         dfs(grid,i,j-1,cnt); // left
+          dfs(grid,i,j+1,cnt); // right
+           dfs(grid,i-1,j-1,cnt); // upper left diagonal
+            dfs(grid,i+1,j+1,cnt); //  lower right diagonal
+             dfs(grid,i-1,j+1,cnt); // upper right diagonal
+             
+     dfs(grid,i+1,j-1,cnt); // lower left diagonal
+     
+    }
