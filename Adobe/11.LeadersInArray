@@ -1,0 +1,21 @@
+ https://practice.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1/
+ 
+ 
+ vector<int> leaders(int a[], int n){
+         vector<int> result; 
+    stack<int> s;
+        int max= a[n-1]; // since the last element will always be aleader
+        for(int i=n-1;i>=0;i--){ // traversing from right to left
+            if(a[i]>=max){ 
+            s.push(a[i]); // push the greatest element by far
+            max=a[i];  // assign it to max
+                
+            }
+            
+     }
+        while(!s.empty()){
+            result.push_back(s.top());
+            s.pop();
+        }
+        return result;
+    }
