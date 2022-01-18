@@ -1,0 +1,28 @@
+https://practice.geeksforgeeks.org/problems/generate-all-possible-parentheses/1/
+
+// N is the number of pairs of parentheses
+// Return list of all combinations of balanced parantheses
+// three conditions
+// only add open if open less than n
+// only add close if close less than n
+// valid iff open==closed==n
+class Solution
+{
+    public:
+    void helper(vector<string>&v,int n, int oc , int cc , string s){
+        //base case
+        if(oc==n && cc==n){
+            v.push_back(s);
+            return;
+        }
+        
+        if(oc<n){
+            helper(v,n,oc+1,cc ,s+"(");
+            
+        }
+        
+        if(cc<oc){
+            helper(v,n,oc,cc+1,s+")");
+        }
+    }
+    
