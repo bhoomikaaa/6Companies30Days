@@ -1,0 +1,43 @@
+https://practice.geeksforgeeks.org/problems/subset-sum-problem2014/1
+
+int req;
+   void rec(int currsum,int i,int N,int arr[],int &ans)
+   { 
+       if(currsum>req || ans==1) // if currsum becomes greater than required sum  or we find the required sum
+        return;
+       if(i==N) // if i is present at the last element
+        {
+            if(currsum==req) // check if the sum is eq to requiree\d
+              ans=1;
+            return;
+        }
+      
+        rec(currsum+arr[i],i+1,N,arr,ans); // incl the element
+        rec(currsum,i+1,N,arr,ans); // excl the element
+        
+   }
+
+
+
+ int equalPartition(int N, int arr[])
+    {
+        if(N==1) // cant be divided into a subset if only 1 element
+        return 0;
+       if(N==2) // if there are only 2 elements that subset is only possible if they both are equal
+       {
+           if(arr[0]==arr[1])
+            return 1;
+           else
+            return 0;
+       }
+       int sum=0;
+       for(int i=0;i<N;i++)
+        sum+=arr[i]; // calculating the sum of arr
+       if(sum%2) //  equal subset cant be divided is sum of array is odd
+        return 0;
+       int ans=0; 
+       req=sum/2; // we will check for a single subset bcz the other half would automatically be present
+       rec(0,0,N,arr,ans); // recursive call
+       return ans;
+        
+    }
