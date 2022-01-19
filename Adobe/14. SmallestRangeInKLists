@@ -1,0 +1,46 @@
+https://practice.geeksforgeeks.org/problems/find-smallest-range-containing-elements-from-k-lists/1/
+
+  #define p pair<int,pair<int,int>> // a pair of int value and a pair
+    pair<int,int> findSmallestRange(int KSortedArray[][N], int n, int k)
+    {
+        priority_queue<p,vector<p>,greater<p>>q; // min heap
+        
+        int mn=INT_MAX,mx=INT_MIN, range=INT_MAX;
+        int low=0,high=0;
+        for(int i=0;i<k;i++){
+            q.push({KSortedArray[i][0],{i,0}}); // push all the first elements of all arrays
+            mn=min(KSortedArray[i][0],mn); // assign the min to mn
+            mx=max(KSortedArray[i][0],mx); // assign the max to mx
+            
+        }
+        
+        while(true){
+            p temp=q.top(); // take the min value that is top in temp
+            q.pop(); // and then pop it
+            
+           int min1=temp.first; // take the value of el in min1
+           
+            if(range >mx-min1){ // if mx-min1 is maller than previous range
+                //update the values
+                mn=min1;
+                low=mn;
+                high=mx;
+                range=mx-mn;
+                
+            }
+          int i=temp.second.first;//array number
+          int j=temp.second.second;// index
+          
+          if(j==n-1)//if fully traversed
+          break;
+          
+          q.push({KSortedArray[i][j+1],{i,j+1}});
+          
+          if(mx <KSortedArray[i][j+1])
+          {
+              mx=KSortedArray[i][j+1];
+          }
+ 
+        }
+        return {low,high};
+    }
