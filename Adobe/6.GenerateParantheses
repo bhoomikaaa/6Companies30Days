@@ -25,4 +25,12 @@ class Solution
             helper(v,n,oc,cc+1,s+")");
         }
     }
+    vector<string> AllParenthesis(int n) 
+    {
+        vector<string>v;
+        int oc=0;
+        int cc=0;
+        helper(v,n,oc,cc,"");
+        return v;
+    }
     
