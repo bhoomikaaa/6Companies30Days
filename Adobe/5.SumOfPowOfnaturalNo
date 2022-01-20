@@ -1,0 +1,18 @@
+https://practice.geeksforgeeks.org/problems/express-as-sum-of-power-of-natural-numbers5647/1
+
+ long long solve(int n,int x,int idx){
+        if(pow(idx,x)<n)// bcz the natural no can be till max sqrt of n bcz after that the number would be greater than n
+  return solve(n,x,idx+1)+solve(n-pow(idx,x),x,idx+1);
+  // without incl         // with incl
+  else if(pow(idx,x)==n)
+  return 1;
+  else return 0;
+  
+    }
+    
+    
+    
+    int numOfWays(int n, int x)
+    {
+        return solve(n,x,1);
+    }
