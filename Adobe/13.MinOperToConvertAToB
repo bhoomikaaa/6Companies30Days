@@ -1,0 +1,30 @@
+https://practice.geeksforgeeks.org/problems/minimum-insertions-to-make-two-arrays-equal/1/
+
+class Solution {
+  public:
+  // finding the longest increasing the subsequence
+  int lis(vector<int>v){
+      vector<int>res;
+      if(v.size()>0)
+      res.push_back(v[0]);
+      for(int i=1;i<v.size();i++){
+          if(v[i]>res.back()){
+              res.push_back(v[i]);
+          }
+          else{
+          int id=lower_bound(res.begin(),res.end(),v[i])-res.begin();
+          res[id]=v[i];
+      }
+  }
+  return res.size();
+}
+    int minInsAndDel(int A[], int B[], int N, int M) {
+        vector<int>temp;
+        for(int i=0;i<N;i++){
+            if(binary_search(B,B+M,A[i])){ // searching for all elements of A into B and adding only those el which are present in b
+            temp.push_back(A[i]); // or trimming the array A
+        }
+    }
+    return(N+M-(2*lis(temp)));
+    // N-lis deletions to convert A into lis and M-lis insertions to convert lis into B
+}
