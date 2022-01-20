@@ -1,0 +1,18 @@
+https://practice.geeksforgeeks.org/problems/next-higher-palindromic-number-using-the-same-set-of-digits5859/1/
+
+    int l=N.size();
+      int mid=l/2;
+      string ans;
+      if(l<=3)
+      return "-1";
+      string first= N.substr(0,mid);
+      string t=first;
+       next_permutation(first.begin(),first.end());
+         if(first<=t) return "-1"; 
+       ans+=first;
+       if(l&1)
+       ans+=N[mid];
+       reverse(first.begin(),first.end());
+       ans+=first;
+       return ans;
+    }
