@@ -1,0 +1,30 @@
+https://leetcode.com/problems/koko-eating-bananas/
+
+   int minEatingSpeed(vector<int>& piles , int h) {
+        int left= 1;
+       long long  int right= 10000000000;
+        while(left<=right){
+            int mid= left+(right-left)/2;
+            if(totalTime(piles,mid,h)) right =mid-1; // decrease speed if total hours are less
+            else left= mid+1; // else increase speed
+        }
+        return left;
+        
+        
+    }
+
+bool totalTime(vector<int>& piles, int k , int h){
+    int hours=0;
+    for(int pile:piles){
+        int div= pile/k; // eg pile= 7 and k= 3  so div = 2
+        hours+=div; // hours= 2
+        if(pile % k!=0) hours++; // 7%3!=0 hours=3
+    }
+    
+    
+    return hours<=h; // true if hours is less than given time
+}
+
+
+
+
