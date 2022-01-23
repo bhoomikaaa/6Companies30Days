@@ -1,0 +1,38 @@
+https://practice.geeksforgeeks.org/problems/word-search/1/
+
+bool fun(vector<vector<char>>& board, string &word,int i,int j,int k)
+{
+int n=word.size();
+int row=board.size(),col=board[0].size();
+if(k==n)
+return true;
+if(i<0 || i>=row || j<0 || j>=col)
+return false;
+
+    if(word[k]==board[i][j])
+    {
+        board[i][j]='&'; //backtracking
+        bool res=fun(board,word,i+1,j,k+1)||fun(board,word,i-1,j,k+1)||fun(board,word,i,j+1,k+1)||fun(board,word,i,j-1,k+1);
+        board[i][j]=word[k];
+        return res;
+    }
+    else
+        return false;
+}
+    
+
+   bool isWordExist(vector<vector<char>>& board, string word) {
+        // Code here
+          int n=word.size();
+    int row=board.size(),col=board[0].size();
+    
+    for(int i=0;i<row;i++)
+    {
+        for(int j=0;j<col;j++)
+        {
+            if(board[i][j]==word[0] && fun(board,word,i,j,0))
+                return true;
+        }
+    }
+    return false;
+    }
