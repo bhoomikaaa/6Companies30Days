@@ -1,0 +1,45 @@
+https://leetcode.com/problems/capacity-to-ship-packages-within-d-days
+
+  bool check(vector<int>& weights, int n , int capacity, int days){
+        int wt=0; // current wt
+        int days_count=1; 
+        for(int i=0;i<n;i++){
+            if(weights[i]>capacity) // if any individual weight is greater than capacity then shipping all the packages in that capacity is not possible
+                return false;
+            
+            wt+=weights[i]; 
+            if(wt>capacity){ // if wt becomes greater than capacity
+                days_count++; // start with a new day
+                wt=weights[i]; // initialize wt with the current weight
+            }
+        }
+        
+        if(days_count> days) // if required days are greater than given days
+            return false; 
+            else
+                return true;
+        
+    }
+    
+    
+    
+    
+    int shipWithinDays(vector<int>& weights, int days) {
+        int n= weights.size();
+        int low=0;
+        int high=0;
+        for(int i=0;i<n;i++){ // max capacity could be sum of all the weights to be shipped
+            high+=weights[i];
+        }
+        int ans=0;
+        while(low<=high){
+            int mid= low+ (high-low)/2;
+            if(check(weights,n,mid,days)){ // if shipping all the packages is possible within 'days' days , then probably it could be possible in even lesser capacity
+                ans=mid;
+                high=mid-1;
+            }
+            else
+                low=mid+1; // else we can increase our capacity
+        }
+        return ans;
+    }
