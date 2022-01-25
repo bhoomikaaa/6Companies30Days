@@ -1,0 +1,27 @@
+https://leetcode.com/problems/number-of-provinces/
+
+// basically we have to find the number of components in a graph
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int count=0; // initialize count with 0
+        for(int i=0;i<isConnected.size();i++){
+            if(isConnected[i][i]==1){ // starting with 0,0 since every city is connected to itself
+                count++; // incr the count
+                dfs(isConnected,i); // perform dfs for all its connected nodes
+            }
+        }
+        return count;
+    }
+    
+    void dfs(vector<vector<int>>& isConnected, int v){
+        if(isConnected[v][v]==0) return;
+        for(int i=0;i< isConnected.size();i++){
+            if(isConnected[v][i]==1){ checking which nodes are connected to v 
+                isConnected[v][i]=0; // if connected mark them visited
+                dfs(isConnected,i); // and perform dfs on them
+            }
+    }
+    }
+    
+    
+    
+    
