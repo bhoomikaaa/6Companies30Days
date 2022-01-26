@@ -1,0 +1,47 @@
+https://leetcode.com/problems/find-in-mountain-array
+
+int findInMountainArray(int target, MountainArray &mountainArr) {
+       int n=mountainArr.length();
+        int l=0,h=n-1;
+        
+        //Find Peak element
+        while(l<h)
+        {
+            int mid = l+(h-l)/2;
+            if(mountainArr.get(mid)<mountainArr.get(mid+1))
+                l=mid+1;
+            else
+                h=mid;    
+        }
+//binary search in first half
+int peak=l;
+int s=0, e=peak;
+while(s<=e){
+    int mid= s+(e-s)/2;
+    if(mountainArr.get(mid)== target)
+        return mid;
+    else if(mountainArr.get(mid)<target)
+        s=mid+1;
+    else
+        e=mid-1;
+}
+        
+       
+        
+        // Binary search in second half
+        s=peak+1;
+        e=n-1;
+        while(s<=e)
+        {
+            int mid = s+(e-s)/2;
+            if(mountainArr.get(mid)==target)
+                return mid;
+            else if(mountainArr.get(mid)>target)
+                s=mid+1;
+            else 
+                e=mid-1;
+        }
+        
+        //if element not found
+        return -1;
+    }
