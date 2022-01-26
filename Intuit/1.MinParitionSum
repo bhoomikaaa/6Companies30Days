@@ -1,0 +1,16 @@
+
+
+Using recursion
+
+int recur(int arr[],int i, int sumcal, int sumtotal){
+      if(i==0) // we are on last element 
+      return abs((sumtotal- sumcal)-sumcal); // sum till previous el - sum of individual el
+      return min(recur(arr,i-1,sumcal+arr[i-1],sumtotal),recur(arr,i-1,sumcal,sumtotal)); // either take element in subset or dont
+  }
+  
+ 	int minDifference(int arr[], int n)  { 
+	  int sumtotal=0;
+	  for(int i=0;i<n;i++)
+	  sumtotal+=arr[i];
+	  return recur(arr,n,0,sumtotal);
+	} 
