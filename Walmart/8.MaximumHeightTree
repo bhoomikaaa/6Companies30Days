@@ -1,0 +1,14 @@
+https://practice.geeksforgeeks.org/problems/sorted-subsequence-of-size-3/1/
+
+/*  N= no of dots in triangle
+    x= height of triangle
+    N= x(x+1)/2
+    x^2+x-2n=0
+    now just find root and get the value of x that is height of traingle
+    using shri dharacharya formula
+    a= 1 b=1 c= -2n
+    */
+ 
+    int height(int N){
+        return (-1 + sqrt(1+ 8*N))/2;
+    }
