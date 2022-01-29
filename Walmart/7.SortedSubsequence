@@ -1,0 +1,23 @@
+https://practice.geeksforgeeks.org/problems/sorted-subsequence-of-size-3/1/
+
+
+vector<int> find3Numbers(vector<int> arr, int N) {
+       int x= INT_MAX;
+       int y= INT_MIN;
+       int left=0; int right=N-1;
+       while(left<right){
+           x= min(x,arr[left]); // keep storing the min value in x
+           y=max(y,arr[right]);  // keep storing the max value in y
+       
+       if(y>x){ // if y is greater than x 
+       // then search for a valid middle element
+           for(int i=left+1;i<right-1;i++){
+               if(arr[i]<y && arr[i]>x)
+               return {x,arr[i],y};
+           }
+       }
+       left++;
+       right--;
+    }
+    return {};
+    }
