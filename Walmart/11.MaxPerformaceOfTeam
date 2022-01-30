@@ -1,0 +1,24 @@
+https://leetcode.com/problems/maximum-performance-of-a-team
+
+ vector<pair<int,int>> v;
+        // make a pair of vector to store efficiency and speed
+        priority_queue<int,vector<int>,greater<int>> pq;
+        // min heap of size k 
+        for(int i=0;i<n;i++){
+            v.push_back({efficiency[i],speed[i]});
+        }
+        long sum=0, ans=0;
+        sort(v.begin(),v.end());
+        // we are sorting the vector by efficiency because we need the minimum efficiency so we //try to pick the minimum from maximum efficincies of array or can say thta minimizing the //maximum eff.
+        for(auto i=n-1;i>=0;i--){ // traversing from back bcz we need max efficiecies to choose //from
+            sum+=v[i].second;
+            pq.push(v[i].second); // keep adding the speed in heap
+            if(pq.size()>k){ // if size becomes greater than k
+                sum-=pq.top(); // remove the minimum el from sum
+                pq.pop(); // and also pop it from heap
+            }
+            ans= max(ans, sum*v[i].first);
+            // return the max perfromance out of all
+        }
+        return ans%10000000007;
+        */
