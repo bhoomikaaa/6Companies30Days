@@ -1,0 +1,24 @@
+https://leetcode.com/problems/divide-two-integers/
+
+
+
+
+Brute force approach
+
+  int divide(int dividend, int divisor) {
+        
+        if(dividend == 0) return 0;
+        int sign=1;
+        if(dividend <0 && divisor>0 || dividend>0 && divisor<0)
+        sign=-1;
+        dividend= abs(dividend);
+        divisor=  abs(divisor);
+        // for a division to be valid, remainder should always be less than divisor
+        
+        int quotient=0;
+        while(dividend>=divisor){
+            dividend-=divisor;
+            ++quotient;
+        }
+        return quotient*sign;
+    }
