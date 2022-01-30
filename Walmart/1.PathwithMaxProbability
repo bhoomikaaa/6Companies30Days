@@ -1,0 +1,35 @@
+https://leetcode.com/problems/path-with-maximum-probability/
+
+#define pdi pair<double,int>
+    #define pid pair<int,double>
+    double dijkstra(vector<pid> graph[], int start, int end , int n){
+        vector<double> dist(n,-1.0); // Current vertex and its probability from the start, We //need to maximize the probability so initially set the probabilies of all to some negative value
+        priority_queue<pdi> maxHeap;// dist from start, curr vertex
+        maxHeap.push({1,start}); // p to reach start node from itself 1
+        dist[start]=1.0;
+        vector<bool> visited(n,false); // to store the nodes which we have visited
+        while(!maxHeap.empty()){
+            int u= maxHeap.top().second; // select node with highest pr from heap
+            if(u== end ) return dist[u];
+            maxHeap.pop();
+            if(visited[u]) continue;
+            visited[u] = true;
+            for(auto itr: graph[u]){
+                int v= itr.first;
+                double w= itr.second;
+                if(dist[v]<dist[u]*w){
+                    dist[v]= dist[u]*w;
+                    maxHeap.push({dist[v], v});
+                }
+            }
+        }
+        return 0;
+    }
+    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
+        vector<pid> graph[n];
+        for(int i=0;i<edges.size();i++){
+            graph[edges[i][0]].push_back( make_pair(edges[i][1], succProb[i]));
+            graph[ edges[i][1] ].push_back( make_pair(edges[i][0], succProb[i]) );
+        }
+        return dijkstra(graph,start,end,n);
+    }
